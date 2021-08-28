@@ -16,7 +16,7 @@ const leaveUpdate = {
     body:{
         type:"object",
         properties:{
-            userId:{type:'string'},
+           
             status:{type:'string'} ,
             id:{type:'string'}  
         },

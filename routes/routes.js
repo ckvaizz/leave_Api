@@ -26,7 +26,7 @@ async function routes(fastify, options) {
 
   fastify.put("/update-leave", { schema: leaveUpdate }, async (req, res) => {
     try {
-      const { status, userId, id } = req.body;
+      const { status, id } = req.body;
       if (status != "approve" && status != "reject")
         return res.send({ status: false, message: "something went wrong" });
       console.log(req.body);
@@ -39,7 +39,7 @@ async function routes(fastify, options) {
         .then(async (updated) => {
           if (status == "approve") {
             await User.updateOne(
-              { userId: parseInt(userId) },
+              { userId: parseInt(updated.value.userId) },
               {
                 $push: { allLeaves: updated.value.leaveDate },
               }
